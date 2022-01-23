@@ -55,13 +55,25 @@ func (repository *AlbumRepository) Insert(album model.Album) (string, error) {
 	return id, err
 }
 
-func (repository *AlbumRepository) InsertAll(albums []model.Album) error {
-	insertableAlbums := make([]interface{}, len(albums))
-	for i, album := range albums {
-		insertableAlbums[i] = album
+func (repository *AlbumRepository) UpdateById(album model.Album, id string) error {
+	objectId, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return err
 	}
 
-	_, err := repository.collection.InsertMany(repository.context, insertableAlbums)
+	updater := bson.M{"$set": album}
+	_, err = repository.collection.UpdateByID(repository.context, objectId, updater)
+	return err
+}
+
+func (repository *AlbumRepository) DeleteById(id string) error {
+	objectId, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": objectId}
+	_, err = repository.collection.DeleteOne(repository.context, filter)
 	return err
 }
 

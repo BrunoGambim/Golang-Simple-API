@@ -39,3 +39,17 @@ func (service *AlbumService) FindById(id string) (model.Album, error) {
 	album, err := service.albumRepository.FindById(id)
 	return album, err
 }
+
+func (service *AlbumService) UpdateById(album model.Album, id string) error {
+	service.albumRepository.Lock()
+	defer service.albumRepository.Unlock()
+	err := service.albumRepository.UpdateById(album, id)
+	return err
+}
+
+func (service *AlbumService) DeleteById(id string) error {
+	service.albumRepository.Lock()
+	defer service.albumRepository.Unlock()
+	err := service.albumRepository.DeleteById(id)
+	return err
+}
