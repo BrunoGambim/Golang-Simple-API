@@ -10,5 +10,6 @@ import (
 func main() {
 	controllers.NewAlbumController().StartHandling()
 	//testando
+	//teste
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
