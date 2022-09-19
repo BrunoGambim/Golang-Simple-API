@@ -25,7 +25,7 @@ type AlbumRepository struct {
 	sync.Mutex
 	collection *mongo.Collection
 	context    context.Context
-}
+} //comentarios
 
 func NewRepository() (*AlbumRepository, error) {
 	repositoryOnce.Do(func() {
