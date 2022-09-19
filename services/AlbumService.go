@@ -32,6 +32,7 @@ func (service *AlbumService) Insert(album model.Album) (string, error) {
 	id, err := service.albumRepository.Insert(album)
 	return id, err
 } //teste
+// mais comentarios
 
 func (service *AlbumService) FindById(id string) (model.Album, error) {
 	service.albumRepository.Lock()
