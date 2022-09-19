@@ -9,6 +9,5 @@ import (
 
 func main() {
 	controllers.NewAlbumController().StartHandling()
-	//testando
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

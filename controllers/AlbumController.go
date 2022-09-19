@@ -21,7 +21,7 @@ const (
 
 type AlbumController struct {
 	albumService *services.AlbumService
-}
+} // mais comentarios
 
 func NewAlbumController() *AlbumController {
 	service, err := services.NewService()
